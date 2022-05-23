@@ -1,0 +1,22 @@
+/* * {
+    border: solid;
+} */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+}
+
+td {
+    width: 50%;
+}

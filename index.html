@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/4783e69b43.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles/_bootswatch.scss">
+    <link rel="stylesheet" href="./styles/_variables.scss">
+    <link rel="stylesheet" href="./styles/bootstrap.css">
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <title>Phase 1 Project</title>
+</head>
+<body>
+    <div class="header-container mt-3">
+        <h1 class="display-4 text-center">
+            Name  <i class="fas fa-flag text-primary"></i><span class="text-primary"> Nationality </span><i class="fas fa-flag text-primary"></i>
+        </h1>
+    </div>
+
+    <div class="main-container">
+        <div class="card-header">
+            <h4>Provide a name and I will lookup for the countries where it is used the most</h4>
+        </div>
+    
+        <div class="form-container mt-4">
+            <form >
+                <label for="nameToLookup" class="col-form-label col-form-label-lg">Name: </label>
+                <input type="text" name="nameToLookup" id="nameToLookup" placeholder="name to lookup" class="form-control-lg">
+                <input type="submit" id="goBtn" value="Lookup" class="btn btn-primary btn-lg">
+            </form>
+        </div>
+
+        <table class="table table-striped mt-5 mr-3 ml-3">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Probability</th>
+                </tr>
+            </thead>
+
+            <tbody id="countries-list"></tbody>
+        </table>
+    </div>
+
+    <script src="./src/index.js"></script>
+</body>
+</html>
