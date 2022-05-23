@@ -18,7 +18,7 @@ The process is very simple, there is a form where the user can enter a name and 
 ![Main screen](./images/main%20screen.png)
 
 
-Once the user press Enter or click the Lookup button the app execute a fetch to get the countries data
+Once the user presses Enter or clicks the Lookup button the app executes a fetch to get the countries data
 
         // Look in the API for the provided name
         const nameToLookup = document.getElementById("nameToLookup").value;
@@ -34,7 +34,7 @@ Once the user press Enter or click the Lookup button the app execute a fetch to 
                 };
 
 
-In this fetch we are also calling the function to process the country ID in order to get the full name of the country. This function is calling the restcountries API and adding the country name to the unordered list we are creating to show the countries and probabilities to the user.
+In this fetch we are also calling the function to process the country ID in order to get its full name. This function is calling the **restcountries** API and adding the country name to the unordered list we are creating to show the countries and probabilities to the user.
 
     // Get the country name from the API and add it to the DOM element
     function countryName(countryId, row) {
