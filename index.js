@@ -1,4 +1,4 @@
-
+// Show a message to the user that the name was not found
 function showAlert(message, className) {
     // Only shows the alert if it is not already shown
     if (!(document.querySelector(`.alert.alert-${className}`) === null)) {
@@ -22,6 +22,7 @@ function showAlert(message, className) {
     setTimeout(() => document.querySelector(`.alert.alert-${className}`).remove(), 3000);
 }
 
+// Get the country name from the API and add it to the DOM element
 function countryName(countryId, row) {
     fetch(`https://restcountries.com/v3.1/alpha/${countryId}`)
         .then(response => response.json())
@@ -52,6 +53,7 @@ const init = () => {
     document.querySelector(".form-container").addEventListener("submit", event => {
         event.preventDefault();
 
+        // Look in the API for the provided name
         const nameToLookup = document.getElementById("nameToLookup").value;
         fetch(`https://api.nationalize.io?name=${nameToLookup}`)
             .then(response => {
@@ -68,12 +70,23 @@ const init = () => {
                 data.country.forEach(element => {
                     console.log(`Country: ${element.country_id} - ${+(Math.round(element.probability + "e+2")  + "e-2") * 100}%`)
                 });
+                
+                // The API returns an array of up to three country names
                 if (!showCountries(data.country)) {
                     showAlert("No countries found for this name.", "danger");
                 };
             });
-        });
+    });
+    nameToLookup.focus();
+
+    // Clear button to clear the screen and start a new search
+    document.querySelector("#clear-button").addEventListener("click", event => {
+        document.getElementById("nameToLookup").value = "";
+        const countriesList = document.querySelector("#countries-list");
+        countriesList.innerHTML = "";
         nameToLookup.focus();
+    });
+
 }
 
 document.addEventListener('DOMContentLoaded', init);
