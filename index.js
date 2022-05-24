@@ -35,14 +35,16 @@ function showCountries(countries) {
     countriesList.innerHTML = "";
     let countriesDisplayed = false;
     countries.forEach(element => {
+        // Check the element has the country code because sometimes the API returns only the probability 
+        // without the country code
         if (!(element.country_id === "")) {
             // Add a row to the table for each country, usually the API returns 3 countries
             const row = document.createElement("tr");
             countryName(element.country_id, row)
-            row.innerHTML += `
-                <td>${+(Math.round(element.probability + "e+2")  + "e-2") * 100}%</td>
-            `;
+            row.innerHTML += `<td>${+Math.ceil(element.probability * 100)}%</td>`;
             countriesList.appendChild(row);
+
+            // There was at list one element with the country code
             countriesDisplayed = true;
         }
     });
@@ -56,21 +58,8 @@ const init = () => {
         // Look in the API for the provided name
         const nameToLookup = document.getElementById("nameToLookup").value;
         fetch(`https://api.nationalize.io?name=${nameToLookup}`)
-            .then(response => {
-                console.log("Raw response ");
-                console.log(response);
-                const result = response.json();
-                console.log("Json format: ")
-                console.log(result);
-                return result;
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log("Actual data: ");
-                console.log(data);
-                data.country.forEach(element => {
-                    console.log(`Country: ${element.country_id} - ${+(Math.round(element.probability + "e+2")  + "e-2") * 100}%`)
-                });
-                
                 // The API returns an array of up to three country names
                 if (!showCountries(data.country)) {
                     showAlert("No countries found for this name.", "danger");
